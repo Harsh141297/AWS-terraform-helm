@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 frontend:
-  replicaCount: 1
+  replicaCount: 3
   image:
-    repository: nginx
+    repository: frontend
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
@@ -45,9 +45,9 @@ frontend:
     # targetMemoryUtilizationPercentage: 80
 
 backend-1:
-  replicaCount: 1
+  replicaCount: 2
   image:
-    repository: nginx
+    repository: backend-1
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
@@ -68,9 +68,9 @@ backend-1:
     # targetMemoryUtilizationPercentage: 80
 
 backend-2:
-  replicaCount: 1
+  replicaCount: 2
   image:
-    repository: nginx
+    repository: backend-2
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
