@@ -1,4 +1,25 @@
-resource "helm_release" "example" {
+resource "kubernetes_namespace" "nginx-ingress" {
+  metadata {
+    annotations = {
+      name = "nginx-ingress"
+    }
+
+    name = "nginx-ingress"
+  }
+}
+
+resource "helm_release" "nginx-ingress" {
+  name       = "nginx-ingress"
+  chart      = "./nginx-ingress"
+
+  values = [
+    "${file("./nginx-ingress/values.yaml")}"
+  ]
+ 
+}
+
+
+resource "helm_release" "project" {
   name       = "my-local-chart"
   chart      = "./project"
 
