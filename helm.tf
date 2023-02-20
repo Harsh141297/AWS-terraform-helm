@@ -1,14 +1,15 @@
 resource "kubernetes_namespace" "nginx-ingress" {
+  depends_on = [module.eks]
   metadata {
     annotations = {
       name = "nginx-ingress"
     }
-
     name = "nginx-ingress"
   }
 }
 
 resource "helm_release" "nginx-ingress" {
+  depends_on = [kubernetes_namespace.nginx-ingress]
   name       = "nginx-ingress"
   chart      = "./nginx-ingress"
 
@@ -20,6 +21,7 @@ resource "helm_release" "nginx-ingress" {
 
 
 resource "helm_release" "project" {
+  depends_on = [kubernetes_namespace.nginx-ingress]
   name       = "my-local-chart"
   chart      = "./project"
 
