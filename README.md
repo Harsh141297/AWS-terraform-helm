@@ -11,7 +11,8 @@ Before you get started with creating VPC and EKS using Terraform, make sure you 
 - Kubectl installed on your machine
 - Architecture
 
-![image](https://github.com/Harsh141297/AWS-terraform-helm/blob/1e8e2e7e58fc39628997e2202f7a6bbd743fadd1/Untitled%20Diagram.drawio-4.png)In this scenario, we are using Terraform to set up infrastructure for a EKS managed Kubernetes cluster and deploying Kubernetes applications using a Helm chart.
+![image](https://github.com/Harsh141297/AWS-terraform-helm/blob/1e8e2e7e58fc39628997e2202f7a6bbd743fadd1/Untitled%20Diagram.drawio-4.png)
+In this scenario, we are using Terraform to set up infrastructure for a EKS managed Kubernetes cluster and deploying Kubernetes applications using a Helm chart.
 
 Firstly, we will create a VPC with 3 public subnets and 3 private subnets along with a NAT gateway. The public subnet can be used to deploy a bastion server and the NAT gateway, which will allow private instances in the VPC to egress traffic to the internet. This can be achieved with the help of the "terraform-aws-modules/vpc/aws" module and relevant input parameters.
 
@@ -41,59 +42,49 @@ Step 1: Set up AWS credentials
 
 The first step is to set up your AWS credentials on your machine. You can do this by running the following command in your terminal:
 
-\```
-
+```
 $ aws configure
-
-\```
+```
 
 You'll be prompted to enter your AWS access key, secret access key, default region, and output format. Once you've entered your credentials, you're ready to proceed.
 
 Step 2: change directory to project directory ```
 
+```
 $ cd /path/aws-eks-terraform/
-
-\```
+```
 
 Step 3: Initialise terraform
 
 The terraform init command initializes a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
 
-\```
-
+```
 $ terraform init
-
-\```
+```
 
 Step 4: Execute plan for terraform
 
 The terraform plan command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure
 
-\```
-
+```
 $ terraform plan
-
-\```
+```
 
 Step 5: Execute terraform apply command
 
 The terraform plan command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure
 
-\```
-
+```
 $ terraform apply -auto-approve
-
-\```
+```
 
 You can pass the -auto-approve option to instruct Terraform to apply the plan without asking for confirmation. Step 6: Verify the Cluster
 
 Use kubectl commands to verify your cluster configuration.First, get information about the cluster.
 
-\```
-
+```
 $ kubectl cluster-info
-
-\```
+```
 
 Step 7: Terraform also execute helm charts
 
@@ -118,9 +109,11 @@ database: my-database
 
 Step 2: Deploying Application and service with Helm Repository ```
 
+```
 $ helm install setu-project project/
+```
 
-\``` Note:
+Note:
 
 In the current implementation, sensitive data has been exposed and defined in the values.yml file and in the Terraform script. Credentials have been defined in the values.yml file, while in the Terraform script, a local backend has been used for the state file.
 
