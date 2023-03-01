@@ -11,7 +11,7 @@ Before you get started with creating VPC and EKS using Terraform, make sure you 
 - Kubectl installed on your machine
 - Architecture
 
-![](Aspose.Words.6ce9052d-9aa4-4d96-a5ca-b7554a59ed6f.001.jpeg)In this scenario, we are using Terraform to set up infrastructure for a EKS managed Kubernetes cluster and deploying Kubernetes applications using a Helm chart.
+![image](Untitled Diagram.drawio-4.png)In this scenario, we are using Terraform to set up infrastructure for a EKS managed Kubernetes cluster and deploying Kubernetes applications using a Helm chart.
 
 Firstly, we will create a VPC with 3 public subnets and 3 private subnets along with a NAT gateway. The public subnet can be used to deploy a bastion server and the NAT gateway, which will allow private instances in the VPC to egress traffic to the internet. This can be achieved with the help of the "terraform-aws-modules/vpc/aws" module and relevant input parameters.
 
